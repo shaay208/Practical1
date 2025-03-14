@@ -1,7 +1,8 @@
 ﻿#include <iostream>
-/* function to read number from standard input (keyboard) */ int getNumber();
+/* function to read number from standard input (keyboard) */ 
+void getNumber(int *);
 /* function to calculate the sum of two numbers */
-int calculateSum(int, int);
+void calculateSum(int, int, int*);
 /* function to display details to the screen */
 void displayDetails();
 int main() {
@@ -11,25 +12,22 @@ int main() {
     displayDetails();
     /* prompt for and read first number */
     std::cout << "Please enter first number : ";
-    num1 = getNumber();
+    getNumber(&num1);
     /* prompt for and read second number */
     std::cout << "Please enter second number: ";
-    num2 = getNumber();
+    getNumber(&num2);
     /* add two numbers together and display to screen */
-    sum = calculateSum(num1, num2);
-    std::cout << std::endl << "\nSum of " << num1 << " and " << num2 << " is: " <<
-        sum << std::endl << std::endl;
+    calculateSum(num1, num2, &sum);
+    std::cout << std::endl << "\nSum of " << num1 << " and " << num2 << " is: " << sum << std::endl << std::endl;
     return 0;
 }
 /* function to read number from standard input (keyboard) */
-int getNumber() {
-    int num;
-    std::cin >> num;
-    return num;
+void getNumber(int* ptr) {
+    std::cin >> *ptr;
 }
 /* function to calculate the sum of two numbers */
-int calculateSum(int number1, int number2) {
-    return number1 + number2;
+void calculateSum(int number1, int number2, int* sum) {
+    *sum = number1 + number2;  // Dereferencing pointer to store sum
 }
 /* function to display details to the screen */
 void displayDetails() {
